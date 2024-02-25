@@ -7,7 +7,7 @@ from llama_index.core import SimpleDirectoryReader
 from llama_index.core.memory import ChatMemoryBuffer
 from utils import speech_to_text, text_to_speech, autoplay_audio
 from audio_recorder_streamlit import audio_recorder
-from streamlit_float import float_init
+from streamlit_float import *
 # Initialize floating features for the interface
 float_init()
 # st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)

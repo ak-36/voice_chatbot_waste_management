@@ -91,14 +91,12 @@ if audio_bytes:
 # If last message is not from assistant, generate a new response
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
-        with st.spinner():
-            response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
-            st.write(response.response)
-            message = {"role": "assistant", "content": response.response}
-            st.session_state.messages.append(message)  # Add response to message history
+        response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
+        st.write(response.response)
+        message = {"role": "assistant", "content": response.response}
+        st.session_state.messages.append(message)  # Add response to message history
 
-            with st.spinner("Generating audio response..."):
-                audio_file = text_to_speech(response.response)
-                autoplay_audio(audio_file)
-            os.remove(audio_file)
+        audio_file = text_to_speech(response.response)
+        autoplay_audio(audio_file)
+        os.remove(audio_file)
 footer_container.float("bottom: 0rem;")

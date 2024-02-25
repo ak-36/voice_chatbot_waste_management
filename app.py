@@ -71,8 +71,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
             response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
             st.write(response.response)
             message = {"role": "assistant", "content": response.response}
-            # st.session_state.messages.append(message)  # Add response to message history
-            st.session_state.messages.insert(0, {"role": "assistant", "content": response.response})  # Insert the assistant's response at the beginning
+            st.session_state.messages.append(message)  # Add response to message history
 
             with st.spinner("Generating audio response..."):
                 audio_file = text_to_speech(response.response)

@@ -20,7 +20,7 @@ initialize_session_state()
 
 st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
-st.title("Voice-to-Voice Chatbot 🤖")
+# st.title("Voice-to-Voice Chatbot 🤖")
 
 # Load the Llama Index
 @st.cache_resource(show_spinner=False)

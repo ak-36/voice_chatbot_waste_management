@@ -91,7 +91,7 @@ if audio_bytes:
 # If last message is not from assistant, generate a new response
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
+        with st.spinner():
             response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
             st.write(response.response)
             message = {"role": "assistant", "content": response.response}

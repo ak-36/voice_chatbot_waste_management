@@ -32,6 +32,8 @@ def get_answer(messages):
         messages=messages
     )
     return response.choices[0].message.content
+
+
 def autoplay_audio(file_path: str):
     with open(file_path, "rb") as f:
         data = f.read()

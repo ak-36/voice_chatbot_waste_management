@@ -8,9 +8,10 @@ from llama_index.core.memory import ChatMemoryBuffer
 from utils import speech_to_text, text_to_speech, autoplay_audio
 from audio_recorder_streamlit import audio_recorder
 from streamlit_float import float_init
-st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
 # Initialize floating features for the interface
 float_init()
+st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
+
 
 # Initialize session state for managing chat messages
 def initialize_session_state():

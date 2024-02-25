@@ -41,9 +41,19 @@ if "chat_engine" not in st.session_state.keys():
     st.session_state.chat_engine = index.as_chat_engine(chat_mode="context", memory=memory, system_prompt="You are an expert in waste management, who performs friendly conversations with the user. If you do not find any answers to the question just say 'Please ask something related to Waste Management'", verbose=True)
 
 # Create a container for the microphone and audio recording
+# footer_container = st.container()
+# with footer_container:
+#     audio_bytes = audio_recorder()
+
 footer_container = st.container()
 with footer_container:
-    audio_bytes = audio_recorder()
+    # Start the audio recorder
+    audio_bytes, is_recording = audio_recorder()
+
+    # Add a button to manually stop the recording
+    if is_recording and st.button('Stop Recording'):
+        is_recording = False
+
 
 for message in st.session_state.messages:  # Display the prior chat messages
     with st.chat_message(message["role"]):

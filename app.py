@@ -45,36 +45,46 @@ if "chat_engine" not in st.session_state.keys():
 # with footer_container:
 #     audio_bytes = audio_recorder()
 
-footer_container = st.container()
-with footer_container:
-    # Start the audio recorder
-    audio_bytes, is_recording = audio_recorder()
-
-    # Add a button to manually stop the recording
-    if is_recording and st.button('Stop Recording'):
-        is_recording = False
-
-
 for message in st.session_state.messages:  # Display the prior chat messages
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-if audio_bytes:
-    with st.spinner("Transcribing..."):
-        # Write the audio bytes to a temporary file
-        webm_file_path = "temp_audio.mp3"
-        with open(webm_file_path, "wb") as f:
-            f.write(audio_bytes)
+# if audio_bytes:
+#     with st.spinner("Transcribing..."):
+#         # Write the audio bytes to a temporary file
+#         webm_file_path = "temp_audio.mp3"
+#         with open(webm_file_path, "wb") as f:
+#             f.write(audio_bytes)
 
-        # Convert the audio to text using the speech_to_text function
-        transcript = speech_to_text(webm_file_path)
-        if transcript:
-            st.session_state.messages.append({"role": "user", "content": transcript})
-            with st.chat_message("user"):
-                st.write(transcript)
-            os.remove(webm_file_path)
+#         # Convert the audio to text using the speech_to_text function
+#         transcript = speech_to_text(webm_file_path)
+#         if transcript:
+#             st.session_state.messages.append({"role": "user", "content": transcript})
+#             with st.chat_message("user"):
+#                 st.write(transcript)
+#             os.remove(webm_file_path)
 
+footer_container = st.container()
+with footer_container:
+    # Start the audio recorder
+    audio_bytes = audio_recorder()
 
+    # Add a button to manually stop the recording
+    if st.button('Stop Recording'):
+        if audio_bytes:
+            with st.spinner("Transcribing..."):
+                # Write the audio bytes to a temporary file
+                webm_file_path = "temp_audio.mp3"
+                with open(webm_file_path, "wb") as f:
+                    f.write(audio_bytes)
+
+                # Convert the audio to text using the speech_to_text function
+                transcript = speech_to_text(webm_file_path)
+                if transcript:
+                    st.session_state.messages.append({"role": "user", "content": transcript})
+                    with st.chat_message("user"):
+                        st.write(transcript)
+                    os.remove(webm_file_path)
 
 # If last message is not from assistant, generate a new response
 if st.session_state.messages[-1]["role"] != "assistant":

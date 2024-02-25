@@ -41,29 +41,28 @@ if "chat_engine" not in st.session_state.keys():
     memory = ChatMemoryBuffer.from_defaults(token_limit=15000)
     st.session_state.chat_engine = index.as_chat_engine(chat_mode="context", memory=memory, system_prompt="You are an expert in waste management, who performs friendly conversations with the user. If you do not find any answers to the question just say 'Please ask something related to Waste Management'", verbose=True)
 
-# Create a container for the microphone and audio recording
-footer_container = st.container()
-with footer_container:
-    audio_bytes = audio_recorder()
-
 for message in st.session_state.messages:  # Display the prior chat messages
     with st.chat_message(message["role"]):
         st.write(message["content"])
+# Create a container for the microphone and audio recording
 
-if audio_bytes:
-    with st.spinner("Transcribing..."):
-        # Write the audio bytes to a temporary file
-        webm_file_path = "temp_audio.mp3"
-        with open(webm_file_path, "wb") as f:
-            f.write(audio_bytes)
-
-        # Convert the audio to text using the speech_to_text function
-        transcript = speech_to_text(webm_file_path)
-        if transcript:
-            st.session_state.messages.append({"role": "user", "content": transcript})
-            with st.chat_message("user"):
-                st.write(transcript)
-            os.remove(webm_file_path)
+footer_container = st.container()
+with footer_container:
+    audio_bytes = audio_recorder()
+    if audio_bytes:
+        with st.spinner("Transcribing..."):
+            # Write the audio bytes to a temporary file
+            webm_file_path = "temp_audio.mp3"
+            with open(webm_file_path, "wb") as f:
+                f.write(audio_bytes)
+    
+            # Convert the audio to text using the speech_to_text function
+            transcript = speech_to_text(webm_file_path)
+            if transcript:
+                st.session_state.messages.append({"role": "user", "content": transcript})
+                with st.chat_message("user"):
+                    st.write(transcript)
+                os.remove(webm_file_path)
 
 # footer_container = st.container()
 # with footer_container:

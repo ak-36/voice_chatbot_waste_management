@@ -2,6 +2,7 @@ import streamlit as st
 from llama_index.core import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms.openai import OpenAI
 import openai
+import os
 from llama_index.core import SimpleDirectoryReader
 from llama_index.core.memory import ChatMemoryBuffer
 from utils import speech_to_text, text_to_speech, autoplay_audio

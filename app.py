@@ -10,7 +10,7 @@ from audio_recorder_streamlit import audio_recorder
 from streamlit_float import float_init
 # Initialize floating features for the interface
 float_init()
-st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
+# st.set_page_config(page_title="Voice-to-Voice Chatbot", page_icon="🤖", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
 # Initialize session state for managing chat messages
@@ -22,7 +22,7 @@ initialize_session_state()
 
 
 openai.api_key = st.secrets.openai_key
-# st.title("Voice-to-Voice Chatbot 🤖")
+st.title("Voice-to-Voice Chatbot 🤖")
 
 # Load the Llama Index
 @st.cache_resource(show_spinner=False)

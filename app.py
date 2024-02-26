@@ -16,13 +16,14 @@ float_init()
 # Initialize session state for managing chat messages
 def initialize_session_state():
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "assistant", "content": "Click on the below microphone to ask your queries!"}]
+        st.session_state.messages = [{"role": "assistant", "content": "Hi"}]
 
 initialize_session_state()
 
 
 openai.api_key = st.secrets.openai_key
-st.title("Voice-to-Voice Chatbot 🤖")
+st.title("Voice-to-Voice WasteWise Bot 🤖")
+st.info("Please click on the below micrphone to ask your queries!)"
 
 # Load the Llama Index
 @st.cache_resource(show_spinner=False)

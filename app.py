@@ -44,7 +44,7 @@ if "chat_engine" not in st.session_state.keys():
 # Create a container for the microphone and audio recording
 footer_container = st.container()
 with footer_container:
-    audio_bytes = audio_recorder()
+    audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon="microphone", neutral_color="#6aa36f")
 
 for message in st.session_state.messages:  # Display the prior chat messages
     with st.chat_message(message["role"]):

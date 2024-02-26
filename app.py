@@ -46,7 +46,7 @@ footer_container = st.container()
 with footer_container:
     audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
     
-chat_container = st.container(height=200)
+chat_container = st.container(height=500)
 with chat_container:
     for message in st.session_state.messages:  # Display the prior chat messages
         with st.chat_message(message["role"]):

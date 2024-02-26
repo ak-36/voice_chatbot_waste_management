@@ -64,7 +64,7 @@ with st.container():
             padding-top: 0;
         }
         .stContainer > .stBlock > .stBlock > div {
-            max-height: 400px;
+            max-height: 50px;
             overflow-y: auto;
         }
         </style>

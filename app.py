@@ -23,8 +23,8 @@ initialize_session_state()
 
 openai.api_key = st.secrets.openai_key
 st.title("Voice-to-Voice WasteWise Bot 🤖")
-st.info("1. Click on the below micrphone to ask your queries!")
-st.info("2. Clicking again on microphone or taking a pause of 5 seconds will send your recorded query to the bot.")
+st.info("1. Click on the below microphone to ask your queries!")
+st.info("2. Click again to stop recording!")
 
 # Load the Llama Index
 @st.cache_resource(show_spinner=False)

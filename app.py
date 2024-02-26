@@ -32,7 +32,7 @@ def load_data():
     with st.spinner(text="Loading and indexing the data – hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_files=["waste_managment_kb.pdf"], recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.1, system_prompt="You are an assistant who is expert in waste management. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.1, system_prompt="You are an assistant who is expert in waste management. Keep your answers technical and based on facts – do not hallucinate features."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 

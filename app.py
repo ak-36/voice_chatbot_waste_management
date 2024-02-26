@@ -50,7 +50,7 @@ if "chat_engine" not in st.session_state.keys():
 # Create a container for the microphone and audio recording
 footer_container = st.container()
 with footer_container:
-    col1, col2, col3 = st.columns([1, 4, 1])  # Adjust the column ratios as needed
+    col1, col2, col3 = st.columns([1, 1, 1])  # Adjust the column ratios as needed
     with col2:
         audio_bytes = audio_recorder(text="", recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
 

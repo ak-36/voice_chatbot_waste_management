@@ -45,26 +45,28 @@ if "chat_engine" not in st.session_state.keys():
 footer_container = st.container()
 with footer_container:
     audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
-
-for message in st.session_state.messages:  # Display the prior chat messages
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
-
-
-if audio_bytes:
-    with st.spinner("Transcribing..."):
-        # Write the audio bytes to a temporary file
-        webm_file_path = "temp_audio.mp3"
-        with open(webm_file_path, "wb") as f:
-            f.write(audio_bytes)
-
-        # Convert the audio to text using the speech_to_text function
-        transcript = speech_to_text(webm_file_path)
-        if transcript:
-            st.session_state.messages.append({"role": "user", "content": transcript})
-            with st.chat_message("user"):
-                st.write(transcript)
-            os.remove(webm_file_path)
+    
+chat_container = st.container()
+with chat_container:
+    for message in st.session_state.messages:  # Display the prior chat messages
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
+    
+    
+    if audio_bytes:
+        with st.spinner("Transcribing..."):
+            # Write the audio bytes to a temporary file
+            webm_file_path = "temp_audio.mp3"
+            with open(webm_file_path, "wb") as f:
+                f.write(audio_bytes)
+    
+            # Convert the audio to text using the speech_to_text function
+            transcript = speech_to_text(webm_file_path)
+            if transcript:
+                st.session_state.messages.append({"role": "user", "content": transcript})
+                with st.chat_message("user"):
+                    st.write(transcript)
+                os.remove(webm_file_path)
 
 # footer_container = st.container()
 # with footer_container:

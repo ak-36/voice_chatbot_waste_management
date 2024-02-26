@@ -47,27 +47,34 @@ with st.container():
 
 # Create a container for chat messages with a fixed height
 with st.container():
-    st.write("Chat Messages:")
     chat_container = st.container()
     with chat_container:
-        st.write("Messages will appear here...")
+        for message in st.session_state.messages:  # Display the prior chat messages
+            with st.chat_message(message["role"]):
+                st.write(message["content"])
 
     # Add a scrollbar to the chat messages container
     st.markdown(
         """
         <style>
-        [data-testid="stBlock"] > div {
+        .st-bb {
+            padding-top: 0;
+        }
+        .st-cf {
+            padding-top: 0;
+        }
+        .stContainer > .stBlock > .stBlock > div {
+            max-height: 400px;
             overflow-y: auto;
-            height: 400px;
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-for message in st.session_state.messages:  # Display the prior chat messages
-    with chat_container.chat_message(message["role"]):
-        st.write(message["content"])
+# for message in st.session_state.messages:  # Display the prior chat messages
+#     with chat_container.chat_message(message["role"]):
+#         st.write(message["content"])
 
 if audio_bytes:
     with st.spinner("Transcribing..."):

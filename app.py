@@ -46,31 +46,32 @@ with st.container():
     audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
 
 # Create a container for chat messages with a fixed height
-with st.container():
-    chat_container = st.container()
-    with chat_container:
-        for message in st.session_state.messages:  # Display the prior chat messages
-            with st.chat_message(message["role"]):
-                st.write(message["content"])
+chat_container = st.container()
+with chat_container:
+    # chat_container = st.container()
+    # with chat_container:
+    for message in st.session_state.messages:  # Display the prior chat messages
+        with st.chat_message(message["role"]):
+            st.write(message["content"])
 
     # Add a scrollbar to the chat messages container
-    st.markdown(
-        """
-        <style>
-        .st-bb {
-            padding-top: 0;
-        }
-        .st-cf {
-            padding-top: 0;
-        }
-        .stContainer > .stBlock > .stBlock > div {
-            max-height: 50px;
-            overflow-y: auto;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+st.markdown(
+    """
+    <style>
+    .st-bb {
+        padding-top: 0;
+    }
+    .st-cf {
+        padding-top: 0;
+    }
+    .stContainer > .stBlock > .stBlock > div {
+        max-height: 50px;
+        overflow-y: auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # for message in st.session_state.messages:  # Display the prior chat messages
 #     with chat_container.chat_message(message["role"]):

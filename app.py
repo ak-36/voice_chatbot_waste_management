@@ -91,14 +91,14 @@ with chat_container:
 #                     os.remove(webm_file_path)
 
 # If last message is not from assistant, generate a new response
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
-        st.write(response.response)
-        message = {"role": "assistant", "content": response.response}
-        st.session_state.messages.append(message)  # Add response to message history
-
-        audio_file = text_to_speech(response.response)
-        autoplay_audio(audio_file)
-        os.remove(audio_file)
+    if st.session_state.messages[-1]["role"] != "assistant":
+        with st.chat_message("assistant"):
+            response = st.session_state.chat_engine.chat(st.session_state.messages[-1]["content"])
+            st.write(response.response)
+            message = {"role": "assistant", "content": response.response}
+            st.session_state.messages.append(message)  # Add response to message history
+    
+            audio_file = text_to_speech(response.response)
+            autoplay_audio(audio_file)
+            os.remove(audio_file)
 # footer_container.float("bottom: 0rem;")

@@ -44,9 +44,16 @@ if "chat_engine" not in st.session_state.keys():
     st.session_state.chat_engine = index.as_chat_engine(chat_mode="context", memory=memory, system_prompt="You are an expert in waste management, who performs friendly conversations with the user. If you do not find any answers to the question just say 'Please ask something related to Waste Management'", verbose=True)
 
 # Create a container for the microphone and audio recording
+# footer_container = st.container()
+# with footer_container:
+#     audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
+# Create a container for the microphone and audio recording
 footer_container = st.container()
 with footer_container:
-    audio_bytes = audio_recorder(text="",recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
+    col1, col2, col3 = st.columns([1, 2, 1])  # Adjust the column ratios as needed
+    with col2:
+        audio_bytes = audio_recorder(text="", recording_color="#e8b62c", icon_name="microphone", neutral_color="#6aa36f", icon_size="2x", pause_threshold=5.0)
+
     
 chat_container = st.container(height=500)
 with chat_container:
